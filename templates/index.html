@@ -8,9 +8,16 @@
 
 {% block content %}
     {{ super() }}
-    <div class="text-center py-5 px-3">
-        <p class="lead">{{ text }}</p>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="text-center py-5 px-3">
+                <p>{{ text }}</p>
+            </div>
+        </div>
+        <div class="col"></div>
     </div>
+
 {% endblock %}
 
 {% block footer %} {{ super() }} {% endblock %}
