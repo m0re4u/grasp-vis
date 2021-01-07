@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}GRaSP visualizer{% endblock %}
+
+{% block head %} {{ super() }} {% endblock %}
+
+{% block navbar %} {{ super() }} {% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <div class="text-center py-5 px-3">
+        <p class="lead">{{ text }}</p>
+    </div>
+{% endblock %}
+
+{% block footer %} {{ super() }} {% endblock %}
+
