@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}GRaSP visualizer{% endblock %}
+
+{% block head %} {{ super() }} {% endblock %}
+
+{% block navbar %} {{ super() }} {% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-auto text-end">
+        <table class="table table-hover" id="events">
+            <thead>
+              <tr>
+                <th scope="col">Event</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for i, e in events %}
+              <tr>
+                <td class="event-selector" id="{{i}}">{{e}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-6">
+            <div class="text-center py-5 px-3">
+                <p id="text-box">{{ text }}</p>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+    <script type=text/javascript>
+        $(document).on('mouseover', '.event-selector', function(e) {
+            console.log("trigger");
+            $.getJSON($SCRIPT_ROOT + '/highlight_event', {
+                event_id: e.target.id,
+            }, function(data) {
+                var str = $("#text-box").text();
+                var span_start = "<span id=\"highlighted_text\">"
+                var span_end = "</span>"
+                var output = [
+                  str.slice(0, data.offset),
+                  span_start,str.slice(data.offset, data.offset+data.length),
+                  span_end,
+                  str.slice(data.offset+data.length)
+                ].join('');
+                $("#text-box").html(output);
+            });
+        });
+      </script>
+{% endblock %}
+
+{% block footer %} {{ super() }} {% endblock %}
+
