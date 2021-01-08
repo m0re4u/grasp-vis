@@ -17,7 +17,7 @@ def select_event():
             values = fact.get_factVals()
             for value in values:
                 factvalues.append((value.get_resource(), value.get_value()))
-    return jsonify(result=factvalues)
+    return jsonify(fact_info=current_app.fact_dict[event_id]['words'], fact_values=factvalues, srl=current_app.fact_dict[event_id]['srl']['roles'])
 
 
 def add_event_spans_to_text(text, sorted_events):

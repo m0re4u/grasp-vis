@@ -18,6 +18,14 @@ def get_all_factualities(parsed_naf):
      - the lowest of the character offsets for all words
      - the total length of all words
     """
+
+    srl_predicates = {
+        "".join([y.get_id() for y in x.get_span()]): {
+            'id': x.get_id(),
+            'roles': [(r.get_semRole()) for r in x.get_roles()]
+            }
+            for x in parsed_naf.get_predicates()
+    }
     fact_dict = {}
     for fact in parsed_naf.get_factualities():
         fact_id = fact.get_id()
@@ -33,4 +41,9 @@ def get_all_factualities(parsed_naf):
         fact_dict[fact_id]['offset'] = min(fact_dict[fact_id]['offset'])
         # Sum all lengths
         fact_dict[fact_id]['length'] = sum(fact_dict[fact_id]['length'])
+
+        # Add SRL roles
+        tgts = "".join([x.get_id() for x in fact.get_span()])
+        fact_dict[fact_id]['srl'] = srl_predicates[tgts]
+
     return fact_dict
