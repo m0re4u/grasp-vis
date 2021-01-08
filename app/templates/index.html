@@ -36,24 +36,16 @@
     </div>
 
     <script type=text/javascript>
-        $(document).on('mouseover', '.event-selector', function(e) {
-            console.log("trigger");
-            $.getJSON($SCRIPT_ROOT + '/highlight_event', {
-                event_id: e.target.id,
-            }, function(data) {
-                var str = $("#text-box").text();
-                var span_start = "<span id=\"highlighted_text\">"
-                var span_end = "</span>"
-                var output = [
-                  str.slice(0, data.offset),
-                  span_start,str.slice(data.offset, data.offset+data.length),
-                  span_end,
-                  str.slice(data.offset+data.length)
-                ].join('');
-                $("#text-box").html(output);
-            });
-        });
-      </script>
+      $(document).on('mouseover mouseout', '.event-selector', function(e) {
+        var eid = e.target.id;
+        const COLOR = 'rgb(127, 255, 0)';
+        if ($('span#' + eid).css('background-color') == COLOR) {
+          $('span#' + eid).css('background-color', '');
+        } else {
+          $('span#' + eid).css('background-color', COLOR);
+        }
+      });
+    </script>
 {% endblock %}
 
 {% block footer %} {{ super() }} {% endblock %}
