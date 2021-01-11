@@ -22,7 +22,10 @@ def get_all_factualities(parsed_naf):
     srl_predicates = {
         "".join([y.get_id() for y in x.get_span()]): {
             'id': x.get_id(),
-            'roles': [(r.get_semRole()) for r in x.get_roles()]
+            'roles': [(r.get_semRole(), " ".join([" ".join([
+                        parsed_naf.text_layer.get_wf(wf).get_text() for wf in parsed_naf.term_layer.get_term(x.get_id()).get_span_ids()
+                    ]) for x in r.get_span()
+                ])) for r in x.get_roles()]
             }
             for x in parsed_naf.get_predicates()
     }

@@ -42,7 +42,7 @@
               <p id="text-box">{{ text }}</p>
           </div>
       </div>
-      <div class="col" id="srl-container"></div>
+      <div class="col overflow-auto" id="srl-container"></div>
     </div>
 
     <script type=text/javascript>
@@ -80,7 +80,6 @@
         $.getJSON($SCRIPT_ROOT + '/select_event', {
           event_id: eid
         }, function (data) {
-          console.log(data);
           $('#factval-table-body').empty();
           $('#srl-container').empty();
           for (let i = 0; i < data.fact_values.length; i++) {
@@ -90,15 +89,15 @@
 
           var children = [];
           for (let i = 0; i < data.srl.length; i++) {
-            children.push({'name':data.srl[i], 'parent':"Top Level"});
+            children.push({'name':data.srl[i][1], 'parent':"Top Level", 'role': data.srl[i][0]});
           }
           var treeData = [{
               "name": data.fact_info,
               "parent": "null",
               "children": children
             }];
-          var margin = {top: 20, right: 120, bottom: 20, left: 120},
-          width = 400 - margin.right - margin.left,
+          var margin = {top: 20, right: 120, bottom: 20, left: 60},
+          width = 700 - margin.right - margin.left,
           height = 500 - margin.top - margin.bottom;
 
           var i = 0,
@@ -150,7 +149,13 @@
               .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
               .attr("dy", ".35em")
               .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-              .text(function(d) { return d.name; })
+              .text(function(d) {
+                if (d.role) {
+                  return d.role + " - " +  d.name;
+                } else {
+                  return d.name;
+                }
+              })
               .style("fill-opacity", 1e-6);
 
             // Transition nodes to their new position.
@@ -185,9 +190,11 @@
             link.enter().insert("path", "g")
               .attr("class", "link")
               .attr("d", function(d) {
-              var o = {x: source.x0, y: source.y0};
-              return diagonal({source: o, target: o});
-              });
+                var o = {x: source.x0, y: source.y0};
+                return diagonal({source: o, target: o});
+              })
+
+
 
             // Transition links to their new position.
             link.transition()
@@ -205,19 +212,19 @@
 
             // Stash the old positions for transition.
             nodes.forEach(function(d) {
-            d.x0 = d.x;
-            d.y0 = d.y;
+              d.x0 = d.x;
+              d.y0 = d.y;
             });
           }
 
           // Toggle children on click.
           function click(d) {
             if (d.children) {
-            d._children = d.children;
-            d.children = null;
+              d._children = d.children;
+              d.children = null;
             } else {
-            d.children = d._children;
-            d._children = null;
+              d.children = d._children;
+              d._children = null;
             }
             update(d);
           }
