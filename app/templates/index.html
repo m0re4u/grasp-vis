@@ -46,17 +46,37 @@
     </div>
 
     <script type=text/javascript>
+      const EVENT_COLOR = 'rgb(127, 255, 0)';
+      var event_selected = undefined;
+
       $(document).on('mouseover mouseout', '.event-selector', function(e) {
         var eid = e.target.id;
-        const COLOR = 'rgb(127, 255, 0)';
-        if ($('span#' + eid).css('background-color') == COLOR) {
+        if (eid == event_selected) {
+          return;
+        }
+        if ($('span#' + eid).css('background-color') == EVENT_COLOR) {
           $('span#' + eid).css('background-color', '');
         } else {
-          $('span#' + eid).css('background-color', COLOR);
+          $('span#' + eid).css('background-color', EVENT_COLOR);
         }
       });
       $(document).on('click', '.event-selector', function(e) {
         var eid = e.target.id;
+        if ($('#' + eid + '.event-selector').css('background-color') == EVENT_COLOR) {
+          // Disable
+          $('#' + eid + '.event-selector').css('background-color', '');
+          event_selected = undefined;
+        } else {
+          // Disable all others
+          if (event_selected) {
+            $('#' + event_selected + '.event-selector').css('background-color', '');
+            $('span#' + event_selected).css('background-color', '');
+
+          }
+          // Enable
+          $('#' + eid + '.event-selector').css('background-color', EVENT_COLOR);
+          event_selected = eid;
+        }
         $.getJSON($SCRIPT_ROOT + '/select_event', {
           event_id: eid
         }, function (data) {
