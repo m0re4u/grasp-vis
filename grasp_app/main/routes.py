@@ -1,7 +1,7 @@
 from grasp_app.main import bp
 import grasp_app.utils.data_loader as dl
 
-from flask import (render_template, request, jsonify, current_app, Markup)
+from flask import (render_template, request, jsonify, current_app, Markup, redirect, url_for, flash)
 
 @bp.route('/select_event', methods=['GET', 'POST'])
 def select_event():
@@ -33,10 +33,15 @@ def add_event_spans_to_text(text, sorted_events):
 
     return Markup(new_text)
 
-
-@bp.route('/')
-@bp.route('/index')
-def hello():
+@bp.route('/file_view',  methods=['GET', 'POST'])
+def show_file():
+    if 'file_selector' not in request.form:
+        flash("You did not specify a file to load!", 'warning')
+        return redirect('index')
+    filename = request.form['file_selector']
+    # Load file
+    current_app.parsed_naf = dl.load_naf(filename)
+    current_app.fact_dict = dl.get_all_factualities(current_app.parsed_naf)
     txt = current_app.parsed_naf.get_raw()
     # Sort events based on their occurrence in the text, from back to front
     sorted_events = {k:v for k,v in sorted(current_app.fact_dict.items(), key=lambda item: item[1]['offset'], reverse=True)}
@@ -44,4 +49,13 @@ def hello():
 
     reversed_se = list(reversed(list(sorted_events.keys())))
     events = [(k, " ".join(sorted_events[k]['words'])) for k in reversed_se]
-    return render_template('index.html', text=new_txt, events=events)
+    return render_template('file_view.html', text=new_txt, events=events)
+
+@bp.route('/')
+@bp.route('/index')
+def hello():
+    files = [
+        'data/test.ec.final.naf',
+        'data/heidag.ec.final.naf'
+        ]
+    return render_template('index.html', files=files)
