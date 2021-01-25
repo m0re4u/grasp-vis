@@ -19,16 +19,36 @@ def get_all_factualities(parsed_naf):
      - the total length of all words
     """
 
-    srl_predicates = {
-        "".join([y.get_id() for y in x.get_span()]): {
-            'id': x.get_id(),
-            'roles': [(r.get_semRole(), " ".join([" ".join([
-                        parsed_naf.text_layer.get_wf(wf).get_text() for wf in parsed_naf.term_layer.get_term(x.get_id()).get_span_ids()
-                    ]) for x in r.get_span()
-                ])) for r in x.get_roles()]
+    # Extract SRL predicates + roles
+    srl_predicates = {}
+    for predicate in parsed_naf.get_predicates():
+        predicate_span = "".join([y.get_id() for y in predicate.get_span()])
+        roles = []
+        for role in predicate.get_roles():
+            semrole = role.get_semRole()
+            spans = []
+            for span in role.get_span():
+                texts = []
+                for wf in parsed_naf.term_layer.get_term(span.get_id()).get_span_ids():
+                    text = parsed_naf.text_layer.get_wf(wf).get_text()
+                    # Somehow sometimes the text span targets only whitespace.. Ignore this?
+                    if text is None:
+                        text=""
+                    texts.append(text)
+                span_str = " ".join(texts)
+                spans.append(span_str)
+            role_span = " ".join(spans)
+
+            roles.append((semrole, role_span))
+
+        value = {
+            'id': predicate.get_id(),
+            'roles': roles
             }
-            for x in parsed_naf.get_predicates()
-    }
+
+        srl_predicates[predicate_span] = value
+
+    # Extract factualities
     fact_dict = {}
     for fact in parsed_naf.get_factualities():
         fact_id = fact.get_id()
@@ -47,6 +67,11 @@ def get_all_factualities(parsed_naf):
 
         # Add SRL roles
         tgts = "".join([x.get_id() for x in fact.get_span()])
-        fact_dict[fact_id]['srl'] = srl_predicates[tgts]
+
+        # Delete facts where and SRL predicate or role has no span
+        if tgts in srl_predicates:
+            fact_dict[fact_id]['srl'] = srl_predicates[tgts]
+        else:
+            del fact_dict[fact_id]
 
     return fact_dict

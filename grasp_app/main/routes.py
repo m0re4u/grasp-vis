@@ -1,5 +1,5 @@
-from app.main import bp
-import app.utils.data_loader as dl
+from grasp_app.main import bp
+import grasp_app.utils.data_loader as dl
 
 from flask import (render_template, request, jsonify, current_app, Markup)
 
