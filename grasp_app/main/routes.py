@@ -1,7 +1,12 @@
-from grasp_app.main import bp
-import grasp_app.utils.data_loader as dl
+from pathlib import Path
 
-from flask import (render_template, request, jsonify, current_app, Markup, redirect, url_for, flash)
+import grasp_app.utils.data_loader as dl
+import grasp_app.utils.rdf_visualizer as rv
+import pandas as pd
+from flask import (Markup, current_app, flash, jsonify, redirect,
+                   render_template, request, url_for)
+from grasp_app.main import bp
+
 
 @bp.route('/select_event', methods=['GET', 'POST'])
 def select_event():
@@ -26,10 +31,13 @@ def show_file():
     if 'file_selector' not in request.form:
         flash("You did not specify a file to load!", 'warning')
         return redirect('index')
-    filename = request.form['file_selector']
+    file_id = request.form['file_selector']
+    naf_filename = current_app.filepaths.iloc[int(file_id)]['NAF']
+    trig_filename = current_app.filepaths.iloc[int(file_id)]['TRiG']
+    print(f"Loading files: {naf_filename} - {trig_filename}")
 
     # Load file
-    current_app.parsed_naf = dl.load_naf(filename)
+    current_app.parsed_naf = dl.load_naf(naf_filename)
     text = Markup(" ".join([f"<span id=\"{token.get_id()}\">{token.get_text()}</span>" for token in current_app.parsed_naf.get_tokens()]))
 
     current_app.fact_dict = dl.get_all_factualities(current_app.parsed_naf)
@@ -37,13 +45,17 @@ def show_file():
     # Sort events based on their occurrence in the text, from back to front
     sorted_events = {k:v for k,v in sorted(current_app.fact_dict.items(), key=lambda item: item[1]['offset'], reverse=False)}
     events = [(k, " ".join(sorted_events[k]['words']), "-".join(sorted_events[k]['word_ids'])) for k in sorted_events]
+
+    # Load the parallel TRiG file for RDF visualization
+    trig_data = dl.load_trig(trig_filename)
+    rv.visualize(trig_data)
     return render_template('file_view.html', text=text, events=events)
 
 @bp.route('/')
 @bp.route('/index')
 def hello():
-    files = [
-        'data/test.ec.final.naf',
-        'data/heidag.ec.final.naf'
-        ]
-    return render_template('index.html', files=files)
+    df = pd.read_csv("data/pairs.csv")
+    df['name'] = df.apply(lambda x: Path(x['NAF']).stem, axis=1)
+    df.set_index('name')
+    current_app.filepaths = df
+    return render_template('index.html', files=df['name'])

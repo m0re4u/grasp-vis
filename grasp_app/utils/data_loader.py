@@ -1,5 +1,6 @@
+import rdflib
 from KafNafParserPy import KafNafParser
-
+from flask import Markup, current_app
 
 def load_naf(filename):
     """
@@ -7,6 +8,12 @@ def load_naf(filename):
     """
     naf_parser = KafNafParser(filename)
     return naf_parser
+
+
+def load_trig(filename):
+    g = rdflib.Graph()
+    g.parse(filename)
+    return g
 
 
 def get_srl_dict(parsed_naf):

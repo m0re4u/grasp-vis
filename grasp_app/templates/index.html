@@ -16,7 +16,7 @@
                     <select class="form-select" aria-label="Select file to visualize" name="file_selector">
                         <option value="" disabled selected>Select file..</option>
                         {% for file in files %}
-                        <option>{{ file }}</option>
+                        <option value="{{loop.index0}}" >{{ file }}</option>
                         {% endfor %}
                     </select>
                 </div>
