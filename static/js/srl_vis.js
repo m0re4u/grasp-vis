@@ -1,7 +1,13 @@
+"use strict";
+
 function visualizeSRL(fact_name, srl_data) {
     var children = [];
-    for (let i = 0; i < srl_data.length; i++) {
-        children.push({'name':srl_data[i][1], 'parent':"Top Level", 'role': srl_data[i][0]});
+    for (const [role, span] of Object.entries(srl_data)) {
+        var text = [];
+        for (let i=0; i < span.length; i++) {
+            text.push($("#"+span[i]).text());
+        }
+        children.push({'span': span, 'name': text.join(" "), 'parent':"Top Level", 'role': role});
     }
     var treeData = [{
         "name": fact_name,

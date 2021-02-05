@@ -20,36 +20,24 @@ def select_event():
     return jsonify(fact_info=current_app.fact_dict[event_id]['words'], fact_values=factvalues, srl=current_app.fact_dict[event_id]['srl']['roles'])
 
 
-def add_event_spans_to_text(text, sorted_events):
-    """
-    Add span elements to the raw text, to highlight all the found events.
-    """
-    SPAN_TEMPLATE = "<span id={eid}>{event_text}</span>"
-    new_text = text
-    for event_id, ed in sorted_events.items():
-        event_text = text[ed['offset']:ed['offset']+ed['length']]
-        assert event_text == " ".join(ed['words'])
-        new_text = text[:ed['offset']] + SPAN_TEMPLATE.format(eid=event_id, event_text=event_text) + new_text[ed['offset']+ed['length']:]
-
-    return Markup(new_text)
-
 @bp.route('/file_view',  methods=['GET', 'POST'])
 def show_file():
+    # Redirect back to file selector page if no file is requested
     if 'file_selector' not in request.form:
         flash("You did not specify a file to load!", 'warning')
         return redirect('index')
     filename = request.form['file_selector']
+
     # Load file
     current_app.parsed_naf = dl.load_naf(filename)
-    current_app.fact_dict = dl.get_all_factualities(current_app.parsed_naf)
-    txt = current_app.parsed_naf.get_raw()
-    # Sort events based on their occurrence in the text, from back to front
-    sorted_events = {k:v for k,v in sorted(current_app.fact_dict.items(), key=lambda item: item[1]['offset'], reverse=True)}
-    new_txt = add_event_spans_to_text(txt, sorted_events)
+    text = Markup(" ".join([f"<span id=\"{token.get_id()}\">{token.get_text()}</span>" for token in current_app.parsed_naf.get_tokens()]))
 
-    reversed_se = list(reversed(list(sorted_events.keys())))
-    events = [(k, " ".join(sorted_events[k]['words'])) for k in reversed_se]
-    return render_template('file_view.html', text=new_txt, events=events)
+    current_app.fact_dict = dl.get_all_factualities(current_app.parsed_naf)
+
+    # Sort events based on their occurrence in the text, from back to front
+    sorted_events = {k:v for k,v in sorted(current_app.fact_dict.items(), key=lambda item: item[1]['offset'], reverse=False)}
+    events = [(k, " ".join(sorted_events[k]['words']), "-".join(sorted_events[k]['word_ids'])) for k in sorted_events]
+    return render_template('file_view.html', text=text, events=events)
 
 @bp.route('/')
 @bp.route('/index')

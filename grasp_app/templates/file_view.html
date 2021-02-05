@@ -29,9 +29,9 @@
             </tr>
           </thead>
           <tbody>
-          {% for i, e in events %}
+          {% for i, event_id, span_ids in events %}
             <tr>
-              <td class="event-selector" id="{{i}}">{{e}}</td>
+              <td class="event-selector" id="{{i}}" data-spans="{{span_ids}}">{{event_id}}</td>
             </tr>
           {% endfor %}
           </tbody>
@@ -39,7 +39,7 @@
       </div>
       <div class="col-6">
           <div class="text-center py-5 px-3">
-              <p id="text-box">{{ text }}</p>
+              <p id="text-box">{{ text | safe}}</p>
           </div>
       </div>
       <div class="col overflow-auto" id="srl-container"></div>
@@ -51,35 +51,36 @@
       var event_selected = undefined;
 
       $(document).on('mouseover mouseout', '.event-selector', function(e) {
-        var eid = e.target.id;
-        if (eid == event_selected) {
+        var wid = e.target.getAttribute("data-spans");
+        if (wid == event_selected) {
           return;
         }
-        if ($('span#' + eid).css('background-color') == EVENT_COLOR) {
-          $('span#' + eid).css('background-color', '');
+        if ($('span#' + wid).css('background-color') == EVENT_COLOR) {
+          $('span#' + wid).css('background-color', '');
         } else {
-          $('span#' + eid).css('background-color', EVENT_COLOR);
+          $('span#' + wid).css('background-color', EVENT_COLOR);
         }
       });
       $(document).on('click', '.event-selector', function(e) {
-        var eid = e.target.id;
-        if ($('#' + eid + '.event-selector').css('background-color') == EVENT_COLOR) {
+        var event_id = e.target.id;
+        var word_id = e.target.getAttribute("data-spans");
+        if ($('#' + event_id + '.event-selector').css('background-color') == EVENT_COLOR) {
           // Disable
-          $('#' + eid + '.event-selector').css('background-color', '');
+          $('#' + event_id + '.event-selector').css('background-color', '');
           event_selected = undefined;
         } else {
           // Disable all others
           if (event_selected) {
-            $('#' + event_selected + '.event-selector').css('background-color', '');
-            $('span#' + event_selected).css('background-color', '');
+            $('#' + event_selected['event'] + '.event-selector').css('background-color', '');
+            $('span#' + event_selected['word']).css('background-color', '');
 
           }
           // Enable
-          $('#' + eid + '.event-selector').css('background-color', EVENT_COLOR);
-          event_selected = eid;
+          $('#' + event_id + '.event-selector').css('background-color', EVENT_COLOR);
+          event_selected = {"word": word_id, "event":event_id}
         }
         $.getJSON($SCRIPT_ROOT + '/select_event', {
-          event_id: eid
+          event_id: event_id
         }, function (data) {
           $('#factval-table-body').empty();
           $('#srl-container').empty();
