@@ -21,6 +21,7 @@ function visualizeSRL(fact_name, srl_data) {
     var i = 0,
     duration = 750,
     root;
+    const SRL_COLOR = 'rgb(0, 255, 127)';
 
     var tree = d3.layout.tree().size([height, width]);
     var diagonal = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
@@ -74,6 +75,23 @@ function visualizeSRL(fact_name, srl_data) {
             })
             .style("fill-opacity", 1e-6);
 
+        svg.selectAll("text")
+            .on("mouseover", function (d) {
+                if (d.span) {
+                    for (let i=0;i<d.span.length;i++) {
+                        d3.selectAll("#"+d.span[i]).style('background-color', SRL_COLOR);
+                    }
+                }
+            })
+            .on("mouseout", function (d) {
+                if (d.span) {
+                    for (let i=0;i<d.span.length;i++) {
+                        d3.selectAll("#"+d.span[i]).style('background-color', "");
+                    }
+                }
+            });
+
+
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
             .duration(duration)
@@ -109,8 +127,6 @@ function visualizeSRL(fact_name, srl_data) {
                 var o = {x: source.x0, y: source.y0};
                 return diagonal({source: o, target: o});
             })
-
-
 
         // Transition links to their new position.
         link.transition()

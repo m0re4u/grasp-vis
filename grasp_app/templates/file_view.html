@@ -52,7 +52,7 @@
 
       $(document).on('mouseover mouseout', '.event-selector', function(e) {
         var wid = e.target.getAttribute("data-spans");
-        if (wid == event_selected) {
+        if (event_selected && wid == event_selected['word']) {
           return;
         }
         if ($('span#' + wid).css('background-color') == EVENT_COLOR) {
@@ -64,6 +64,7 @@
       $(document).on('click', '.event-selector', function(e) {
         var event_id = e.target.id;
         var word_id = e.target.getAttribute("data-spans");
+
         if ($('#' + event_id + '.event-selector').css('background-color') == EVENT_COLOR) {
           // Disable
           $('#' + event_id + '.event-selector').css('background-color', '');
