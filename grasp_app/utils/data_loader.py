@@ -11,8 +11,10 @@ def load_naf(filename):
 
 
 def load_trig(filename):
-    g = rdflib.Graph()
-    g.parse(filename)
+    print("Loading trig")
+    g = rdflib.ConjunctiveGraph()
+    g.parse(location=filename, format="trig")
+    print("graph has {} statements.".format(len(g)))
     return g
 
 
