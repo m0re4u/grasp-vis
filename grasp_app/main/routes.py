@@ -1,7 +1,7 @@
 import grasp_app.utils.data_loader as dl
 import grasp_app.utils.rdf_visualizer as rv
 from flask import (Markup, current_app, flash, jsonify, redirect,
-                   render_template, request, url_for)
+                   render_template, request, url_for, abort)
 from grasp_app.main import bp
 
 
@@ -20,6 +20,29 @@ def select_event():
             for value in values:
                 factvalues.append((value.get_resource(), value.get_value()))
     return jsonify(fact_info=current_app.fact_dict[event_id]['words'], fact_values=factvalues, srl=current_app.fact_dict[event_id]['srl']['roles'])
+
+
+@bp.route('/rdf_data',  methods=['GET', 'POST'])
+def get_rdf_data():
+    if 'file_selector' not in request.args:
+        return abort(404, description="Insert file index under 'file_selector'!")
+    file_idx = request.args.get('file_selector')
+    # Load the parallel TRiG file for RDF visualization
+    trig_filename = dl.get_available_files().iloc[int(file_idx)]['TRiG']
+    trig_data = dl.load_trig(trig_filename)
+    triples = [(s, p, o) for s, p, o in trig_data]
+    nodes = []
+    links = []
+    for s, p, o in triples:
+        if str(s) not in nodes:
+            nodes.append(str(s))
+        if str(o) not in nodes:
+            nodes.append(str(o))
+        source_idx = nodes.index(str(s))
+        target_idx = nodes.index(str(o))
+        links.append({'source': source_idx,'target': target_idx, 'weight': 1, 'label': str(p)})
+    nodes = [{'name': x} for x in nodes]
+    return jsonify(nodes=nodes, links=links)
 
 
 @bp.route('/file_view',  methods=['GET', 'POST'])
@@ -44,10 +67,7 @@ def show_file():
     sorted_events = {k:v for k,v in sorted(current_app.fact_dict.items(), key=lambda item: item[1]['offset'], reverse=False)}
     events = [(k, " ".join(sorted_events[k]['words']), "-".join(sorted_events[k]['word_ids'])) for k in sorted_events]
 
-    # Load the parallel TRiG file for RDF visualization
-    trig_data = dl.load_trig(trig_filename)
-    rv.visualize(trig_data)
-    return render_template('file_view.html', text=text, events=events)
+    return render_template('file_view.html', text=text, events=events, file_idx=file_id)
 
 @bp.route('/')
 @bp.route('/index')

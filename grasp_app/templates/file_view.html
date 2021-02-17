@@ -45,7 +45,12 @@
       <div class="col overflow-auto" id="srl-container"></div>
     </div>
 
+    <div class="row">
+      <div class="d-flex justify-content-center"><div id="rdf-container"></div></div>
+    </div>
+
     <script type=text/javascript src="{{url_for('static', filename='js/srl_vis.js') }}"></script>
+    <script type=text/javascript src="{{url_for('static', filename='js/rdf_vis.js') }}"></script>
     <script type=text/javascript>
       const EVENT_COLOR = 'rgb(127, 255, 0)';
       var event_selected = undefined;
@@ -90,6 +95,15 @@
             $('#factval-table-body').append("<tr><td>"+element[0]+"</td><td>"+element[1]+"</td></tr>")
           }
           visualizeSRL(data.fact_info, data.srl);
+        });
+      });
+    </script>
+    <script>
+      $( document ).ready(function() {
+        $.getJSON($SCRIPT_ROOT + '/rdf_data', {
+          file_selector: {{file_idx}}
+        }, function (data) {
+          visualizeRDF(data);
         });
       });
     </script>
