@@ -33,6 +33,7 @@ def get_rdf_data():
     triples = [(s, p, o) for s, p, o in trig_data]
     nodes = []
     links = []
+    lexical_objs = []
     for s, p, o in triples:
         if str(s) not in nodes:
             nodes.append(str(s))
@@ -40,8 +41,12 @@ def get_rdf_data():
             nodes.append(str(o))
         source_idx = nodes.index(str(s))
         target_idx = nodes.index(str(o))
-        links.append({'source': source_idx,'target': target_idx, 'weight': 1, 'label': str(p)})
-    nodes = [{'name': x} for x in nodes]
+        pred_type = rv.get_pred_type(p)
+        if pred_type == 'lexical':
+            lexical_objs.append(target_idx)
+        links.append({'source': source_idx,'target': target_idx, 'weight': 1, 'label': str(p), 'type': pred_type})
+
+    nodes = [{'name': x, 'type': 'lexical' if i in lexical_objs else 'default'} for i, x in enumerate(nodes)]
     return jsonify(nodes=nodes, links=links)
 
 

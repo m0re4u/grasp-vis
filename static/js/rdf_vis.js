@@ -1,5 +1,10 @@
 "use strict";
 
+var PRED_TYPE_TO_COLOR = {
+    'lexical': "rgb(255,0,0)",
+    'default': "rgb(0,0,0)"
+}
+
 function visualizeRDF(data) {
     var width = 1480, height = 900
 
@@ -32,7 +37,8 @@ function visualizeRDF(data) {
         .call(force.drag);
 
     node.append("circle")
-        .attr("r","5");
+        .attr("r","5")
+        .style({fill: function(d) {return PRED_TYPE_TO_COLOR[d.type]}, stroke: function(d) {return PRED_TYPE_TO_COLOR[d.type]}});
 
     node.append("text")
         .attr("dx", 12)
