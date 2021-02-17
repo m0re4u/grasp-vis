@@ -46,7 +46,7 @@ def get_rdf_data():
             lexical_objs.append(target_idx)
         links.append({'source': source_idx,'target': target_idx, 'weight': 1, 'label': str(p), 'type': pred_type})
 
-    nodes = [{'name': x, 'type': 'lexical' if i in lexical_objs else 'default'} for i, x in enumerate(nodes)]
+    nodes = [{'name':i, 'text': x, 'type': 'lexical' if i in lexical_objs else 'default'} for i, x in enumerate(nodes)]
     return jsonify(nodes=nodes, links=links)
 
 

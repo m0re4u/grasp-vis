@@ -6,22 +6,20 @@ body {
     max-height: 70vh;
 }
 
-.node {
-    cursor: pointer;
+#node-text {
+  font: 8px sans-serif;
 }
 
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3px;
+.rdf-container {
+  border-color: black;
 }
 
-.node text {
-  font: 12px sans-serif;
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
 }
 
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 2px;
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 0px;
 }
