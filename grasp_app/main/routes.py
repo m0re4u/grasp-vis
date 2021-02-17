@@ -1,8 +1,5 @@
-from pathlib import Path
-
 import grasp_app.utils.data_loader as dl
 import grasp_app.utils.rdf_visualizer as rv
-import pandas as pd
 from flask import (Markup, current_app, flash, jsonify, redirect,
                    render_template, request, url_for)
 from grasp_app.main import bp
@@ -32,8 +29,9 @@ def show_file():
         flash("You did not specify a file to load!", 'warning')
         return redirect('index')
     file_id = request.form['file_selector']
-    naf_filename = current_app.filepaths.iloc[int(file_id)]['NAF']
-    trig_filename = current_app.filepaths.iloc[int(file_id)]['TRiG']
+    available_files = dl.get_available_files()
+    naf_filename = available_files.iloc[int(file_id)]['NAF']
+    trig_filename = available_files.iloc[int(file_id)]['TRiG']
     print(f"Loading files: {naf_filename} - {trig_filename}")
 
     # Load file
@@ -54,8 +52,5 @@ def show_file():
 @bp.route('/')
 @bp.route('/index')
 def hello():
-    df = pd.read_csv("data/pairs.csv")
-    df['name'] = df.apply(lambda x: Path(x['NAF']).stem, axis=1)
-    df.set_index('name')
-    current_app.filepaths = df
+    df = dl.get_available_files()
     return render_template('index.html', files=df['name'])

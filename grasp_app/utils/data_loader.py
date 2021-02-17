@@ -1,6 +1,14 @@
 import rdflib
 from KafNafParserPy import KafNafParser
 from flask import Markup, current_app
+from pathlib import Path
+import pandas as pd
+
+def get_available_files():
+    df = pd.read_csv("data/pairs.csv")
+    df['name'] = df.apply(lambda x: Path(x['NAF']).stem, axis=1)
+    df.set_index('name')
+    return df
 
 def load_naf(filename):
     """
