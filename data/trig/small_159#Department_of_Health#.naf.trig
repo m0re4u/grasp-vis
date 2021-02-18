@@ -1,0 +1,147 @@
+@prefix nwrdata: <http://www.newsreader-project.eu/data/> .
+@prefix eso:   <http://www.newsreader-project.eu/domain-ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix ili:   <http://globalwordnet.org/ili/> .
+@prefix fn:    <http://www.newsreader-project.eu/ontologies/framenet/> .
+@prefix nwr:   <http://www.newsreader-project.eu/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix nwrontology: <http://www.newsreader-project.eu/ontologies/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix nwrmagazine: <http://www.newsreader-project.eu/provenance/magazine/> .
+@prefix gaf:   <http://groundedannotationframework.org/gaf#> .
+@prefix nwrpublisher: <http://www.newsreader-project.eu/provenance/publisher/> .
+@prefix pb:    <http://www.newsreader-project.eu/ontologies/propbank/> .
+@prefix nwrauthor: <http://www.newsreader-project.eu/provenance/author/> .
+@prefix grasp: <http://groundedannotationframework.org/grasp#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wn:    <http://www.newsreader-project.eu/ontologies/pwn3.0/> .
+@prefix graspAttribution: <http://groundedannotationframework.org/grasp/attribution#> .
+@prefix sem:   <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix time:  <http://www.w3.org/TR/owl-time#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix graspSentiment: <http://groundedannotationframework.org/grasp/sentiment#> .
+
+{
+}
+
+nwr:instances {
+    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#ev38>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i62859 , fn:Aging , fn:Cause_change_of_position_on_a_scale , eso:Decreasing , eso:Increasing , ili:i22958 , ili:i22960 , ili:i22966 ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=10,14> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=342,345> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2307,2311> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=3971,3974> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=4388,4392> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=4676,4679> ;
+            nwr:phrasecount    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#ev38#0> ;
+            skos:prefLabel     "age" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/1755> , <http://eurovoc.europa.eu/1854> , <http://eurovoc.europa.eu/1598> .
+
+    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#ev38#0>
+            rdfs:label  "age" ;
+            nwr:count   6 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/girl+age>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=0,23> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/girl+age#0> ;
+            skos:prefLabel     "all girl age 12 to 13" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Adolescence> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/girl+age#0>
+            rdfs:label  "all girl age 12 to 13" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/cervical>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=274,282> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=402,410> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/cervical#0> ;
+            skos:prefLabel     "cervical" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Cervical_cancer> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/cervical#0>
+            rdfs:label  "cervical" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/secondary+school+girl+age>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2284,2321> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/secondary+school+girl+age#0> ;
+            skos:prefLabel     "secondary school girl age 12 and 13" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Secondary_education> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/secondary+school+girl+age#0>
+            rdfs:label  "secondary school girl age 12 and 13" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/check+woman+age+year+early+cervical+abnormality>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=4361,4464> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/check+woman+age+year+early+cervical+abnormality#0> ;
+            skos:prefLabel     "check woman between the age of 25 and 64 every three to five year for early cervical abnormality" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Ageing> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/check+woman+age+year+early+cervical+abnormality#0>
+            rdfs:label  "check woman between the age of 25 and 64 every three to five year for early cervical abnormality" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/time/20170123>
+            a              time:DateTimeDescription ;
+            time:day       "---23"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--01"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2017"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+
+    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#tmx0>
+            a                time:Instant ;
+            time:inDateTime  <http://www.newsreader-project.eu/time/20170123> .
+
+    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#ev39>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i42336 ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=57,62> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=926,931> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2627,2632> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2785,2790> ;
+            nwr:phrasecount    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#ev39#0> ;
+            skos:prefLabel     "virus" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/1755> , <http://eurovoc.europa.eu/1854> , <http://eurovoc.europa.eu/1598> .
+
+    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#ev39#0>
+            rdfs:label  "virus" ;
+            nwr:count   4 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/offered%c2%a0hpv>
+            gaf:denotedBy    <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=28,39> ;
+            nwr:phrasecount  <http://www.newsreader-project.eu/data/vaccins/non-entities/offered%c2%a0hpv#0> ;
+            skos:prefLabel   "offered hpv" .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/offered%c2%a0hpv#0>
+            rdfs:label  "offered hpv" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/papilloma>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=47,56> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=916,925> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/papilloma#0> ;
+            skos:prefLabel     "papilloma" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Human_papillomavirus> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/papilloma#0>
+            rdfs:label  "papilloma" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/hpv>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2193,2196> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2623,2626> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=3265,3268> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=3694,3697> , <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=5004,5011> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/hpv#0> ;
+            skos:prefLabel     "HPV" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/HPV_vaccine> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/hpv#0>
+            rdfs:label  "HPV" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/virus+t>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20170117114621/http://www.nhs.uk/Conditions/vaccinations/Pages/hpv-human-papillomavirus-vaccine.aspx#char=2781,2798> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/virus+t#0> ;
+            skos:prefLabel     "the virus doesn' t" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Virus> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/virus+t#0>
+            rdfs:label  "the virus doesn' t" ;
+            nwr:count   1 .
+
+}

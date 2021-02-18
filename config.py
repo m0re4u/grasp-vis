@@ -8,7 +8,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'load-accurate-magnitude-minister'
+    SECRET_KEY = 'load-accurate-magnitude-minister'  # Normally this shouldn't be pushed
 
 
 class ProductionConfig(Config):

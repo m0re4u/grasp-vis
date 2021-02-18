@@ -1,0 +1,253 @@
+@prefix nwrdata: <http://www.newsreader-project.eu/data/> .
+@prefix eso:   <http://www.newsreader-project.eu/domain-ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix ili:   <http://globalwordnet.org/ili/> .
+@prefix fn:    <http://www.newsreader-project.eu/ontologies/framenet/> .
+@prefix nwr:   <http://www.newsreader-project.eu/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix nwrontology: <http://www.newsreader-project.eu/ontologies/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix nwrmagazine: <http://www.newsreader-project.eu/provenance/magazine/> .
+@prefix gaf:   <http://groundedannotationframework.org/gaf#> .
+@prefix nwrpublisher: <http://www.newsreader-project.eu/provenance/publisher/> .
+@prefix pb:    <http://www.newsreader-project.eu/ontologies/propbank/> .
+@prefix nwrauthor: <http://www.newsreader-project.eu/provenance/author/> .
+@prefix grasp: <http://groundedannotationframework.org/grasp#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wn:    <http://www.newsreader-project.eu/ontologies/pwn3.0/> .
+@prefix graspAttribution: <http://groundedannotationframework.org/grasp/attribution#> .
+@prefix sem:   <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix time:  <http://www.w3.org/TR/owl-time#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix graspSentiment: <http://groundedannotationframework.org/grasp/sentiment#> .
+
+{
+}
+
+nwr:instances {
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev33>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i110874 ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=31,38> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=212,219> ;
+            nwr:phrasecount    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev33#0> ;
+            skos:prefLabel     "disease" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/758> , <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/3919> , <http://eurovoc.europa.eu/1755> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev33#0>
+            rdfs:label  "disease" ;
+            nwr:count   2 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/highly+contagious>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=13,30> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/highly+contagious#0> ;
+            skos:prefLabel     "highly contagious" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Infection> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/highly+contagious#0>
+            rdfs:label  "highly contagious" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/very+contagious+disease+cause+virus>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=194,237> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/very+contagious+disease+cause+virus#0> ;
+            skos:prefLabel     "a very contagious disease cause by a virus" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Infection> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/very+contagious+disease+cause+virus#0>
+            rdfs:label  "a very contagious disease cause by a virus" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/time/20160421>
+            a              time:DateTimeDescription ;
+            time:day       "---21"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--04"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2016"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#tmx0>
+            a                time:Instant ;
+            time:inDateTime  <http://www.newsreader-project.eu/time/20160421> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev34>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i88964 , ili:i88965 ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=86,91> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1599,1604> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1957,1962> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2289,2294> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=3265,3270> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=3445,3450> ;
+            nwr:phrasecount    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev34#0> ;
+            skos:prefLabel     "child" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/758> , <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/3919> , <http://eurovoc.europa.eu/1755> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev34#0>
+            rdfs:label  "child" ;
+            nwr:count   6 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/protect>
+            gaf:denotedBy    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=78,85> ;
+            nwr:phrasecount  <http://www.newsreader-project.eu/data/vaccins/non-entities/protect#0> ;
+            skos:prefLabel   "protect" .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/protect#0>
+            rdfs:label  "protect" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/make+sure>
+            gaf:denotedBy    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=92,116> ;
+            nwr:phrasecount  <http://www.newsreader-project.eu/data/vaccins/non-entities/make+sure#0> ;
+            skos:prefLabel   "by make sure he or she" .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/make+sure#0>
+            rdfs:label  "by make sure he or she" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/child>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1594,1604> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1952,1964> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2191,2198> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2284,2296> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2811,2823> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=3569,3581> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/child#0> ;
+            skos:prefLabel     "your child" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Child> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/child#0>
+            rdfs:label  "your child" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccine+child>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=3247,3270> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccine+child#0> ;
+            skos:prefLabel     "vaccine for your child" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Vaccine> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccine+child#0>
+            rdfs:label  "vaccine for your child" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/child+be+eligible>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=3437,3462> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/child+be+eligible#0> ;
+            skos:prefLabel     "if your child be eligible" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Child> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/child+be+eligible#0>
+            rdfs:label  "if your child be eligible" ;
+            nwr:count   1 .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#tmx7>
+            a                  time:Interval ;
+            rdfs:label         "child 12 month" ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2105,2123> ;
+            time:hasBeginning  <http://www.newsreader-project.eu/time/20150421> ;
+            time:hasEnd        <http://www.newsreader-project.eu/time/20160421> .
+
+    <http://www.newsreader-project.eu/time/20150421>
+            a              time:DateTimeDescription ;
+            time:day       "---21"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--04"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2015"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#tmx8>
+            a                  time:Interval ;
+            rdfs:label         "12 year" ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2132,2140> ;
+            time:hasBeginning  <http://www.newsreader-project.eu/time/20040421> ;
+            time:hasEnd        <http://www.newsreader-project.eu/time/20160421> .
+
+    <http://www.newsreader-project.eu/time/20040421>
+            a              time:DateTimeDescription ;
+            time:day       "---21"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--04"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2004"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev35>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i30898 , ili:i30940 , ili:i30926 , ili:i30914 , fn:Travel , fn:Motion , ili:i30944 , eso:Motion ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=165,174> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1560,1569> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2427,2433> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2879,2888> ;
+            nwr:phrasecount    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev35#0> ;
+            skos:prefLabel     "travel" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/758> , <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/3919> , <http://eurovoc.europa.eu/1755> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev35#0>
+            rdfs:label  "travel" ;
+            nwr:count   4 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/abroad>
+            gaf:denotedBy    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=175,181> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2434,2440> ;
+            nwr:phrasecount  <http://www.newsreader-project.eu/data/vaccins/non-entities/abroad#0> ;
+            skos:prefLabel   "abroad" .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/abroad#0>
+            rdfs:label  "abroad" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccination+include+travel+abroad>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1529,1576> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccination+include+travel+abroad#0> ;
+            skos:prefLabel     "vaccination , include before travel abroad" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Vaccination> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccination+include+travel+abroad#0>
+            rdfs:label  "vaccination , include before travel abroad" ;
+            nwr:count   1 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/be+vaccinate+travel+abroad>
+            gaf:denotedBy    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=2838,2895> ;
+            nwr:phrasecount  <http://www.newsreader-project.eu/data/vaccins/non-entities/be+vaccinate+travel+abroad#0> ;
+            skos:prefLabel   "if he or she should be vaccinate before travel abroad" .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/be+vaccinate+travel+abroad#0>
+            rdfs:label  "if he or she should be vaccinate before travel abroad" ;
+            nwr:count   1 .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev36>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i29966 , ili:i22361 , fn:Manufacturing , ili:i34780 ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=95,101> ;
+            nwr:phrasecount    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev36#0> ;
+            skos:prefLabel     "make" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/758> , <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/3919> , <http://eurovoc.europa.eu/1755> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev36#0>
+            rdfs:label  "make" ;
+            nwr:count   1 .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev37>
+            a                  sem:Event , nwrontology:contextualEvent , ili:i34836 , fn:Cause_change_of_position_on_a_scale , fn:Inclusion , eso:Merging , ili:i33974 , ili:i22628 ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=148,157> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1107,1116> , <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1543,1552> ;
+            nwr:phrasecount    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev37#0> ;
+            skos:prefLabel     "include" ;
+            skos:relatedMatch  <http://eurovoc.europa.eu/758> , <http://eurovoc.europa.eu/4636> , <http://eurovoc.europa.eu/4635> , <http://eurovoc.europa.eu/4281> , <http://eurovoc.europa.eu/3919> , <http://eurovoc.europa.eu/1755> .
+
+    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#ev37#0>
+            rdfs:label  "include" ;
+            nwr:count   3 .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccination+include>
+            a                  nwrontology:NONENTITY ;
+            gaf:denotedBy      <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=134,157> ;
+            nwr:phrasecount    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccination+include#0> ;
+            skos:prefLabel     "vaccination , include" ;
+            skos:relatedMatch  <http://dbpedia.org/resource/Vaccination> .
+
+    <http://www.newsreader-project.eu/data/vaccins/non-entities/vaccination+include#0>
+            rdfs:label  "vaccination , include" ;
+            nwr:count   1 .
+
+    <http://dbpedia.org/resource/Africa_(Roman_province)>
+            gaf:denotedBy    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1166,1172> ;
+            nwr:phrasecount  <http://dbpedia.org/resource/Africa_(Roman_province)#0> ;
+            skos:prefLabel   "Africa" .
+
+    <http://dbpedia.org/resource/Africa_(Roman_province)#0>
+            rdfs:label  "Africa" ;
+            nwr:count   1 .
+
+    <http://dbpedia.org/resource/Europe_(disambiguation)>
+            gaf:denotedBy    <http://web.archive.org/web/20161130191521/http://www.cdc.gov/features/measles/#char=1135,1141> ;
+            nwr:phrasecount  <http://dbpedia.org/resource/Europe_(disambiguation)#0> ;
+            skos:prefLabel   "Europe" .
+
+    <http://dbpedia.org/resource/Europe_(disambiguation)#0>
+            rdfs:label  "Europe" ;
+            nwr:count   1 .
+
+}

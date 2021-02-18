@@ -3,3 +3,5 @@ dotenv==0.15.0
 KafNafParserPy
 rdflib
 pandas
+networkx
+matplotlib

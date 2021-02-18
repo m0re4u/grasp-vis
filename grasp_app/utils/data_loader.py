@@ -5,8 +5,11 @@ from pathlib import Path
 import pandas as pd
 
 def get_available_files():
-    df = pd.read_csv("data/pairs.csv")
-    df['name'] = df.apply(lambda x: Path(x['NAF']).stem, axis=1)
+    """
+    Get all available NAF/TRiG file pairs from pairs.csv
+    """
+    df = pd.read_csv("data/pairs.csv", comment="%")
+    df['name'] = df.apply(lambda x: Path(x['TRiG']).stem, axis=1)
     df.set_index('name')
     return df
 
@@ -19,10 +22,12 @@ def load_naf(filename):
 
 
 def load_trig(filename):
-    print("Loading trig")
+    """
+    Load a TRiG file.
+    """
     g = rdflib.ConjunctiveGraph()
     g.parse(location=filename, format="trig")
-    print("graph has {} statements.".format(len(g)))
+    print("Graph has {} statements.".format(len(g)))
     return g
 
 
