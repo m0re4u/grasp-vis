@@ -16,7 +16,7 @@ It is recommended to visualize the `small_` versions of the files, which show he
 ```
 export APP_SETTINGS="config.DevelopmentConfig"
 ```
-- Run `initialize.sh` to setup environment variables.
+- `source initialize.sh` to setup environment variables.
 - Run `python3 -m flask run`
 
 ## Data

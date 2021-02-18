@@ -1,5 +1,5 @@
 Flask==1.1.2
-dotenv==0.15.0
+python-dotenv==0.15.0
 KafNafParserPy
 rdflib
 pandas
