@@ -15,16 +15,15 @@ function visualizeSRL(fact_name, srl_data) {
         "parent": "null",
         "children": children
     };
-    var margin = { top: 20, right: 120, bottom: 20, left: 60 },
-        width = 1200 - margin.right - margin.left,
-        height = 500 - margin.top - margin.bottom;
+    var margin = { top: 10, right: 10, bottom: 10, left: 10},
+        width = 900 - margin.right - margin.left;
 
     // const SRL_COLOR = 'rgb(0, 255, 127)';
 
     var tree = data => {
         const root = d3.hierarchy(data);
         console.log(root);
-        root.dx = 80;
+        root.dx = 120;
         root.dy = width / (root.height + 1);
         return d3.tree().nodeSize([root.dx, root.dy])(root);
     }

@@ -26,7 +26,7 @@ function visualizeRDF(data) {
   //we're going to add a charge to each node
   //also going to add a centering force
   simulation
-    .force("charge_force", d3.forceManyBody())
+    .force("charge_force", d3.forceManyBody().strength(-100))
     .force("center_force", d3.forceCenter(width / 2, height / 2))
     .force("collision_force", d3.forceCollide());
 
@@ -87,7 +87,7 @@ function visualizeRDF(data) {
 
   svg.call(d3.zoom()
     .extent([[0, 0], [width, height]])
-    .scaleExtent([1, 8])
+    .scaleExtent([0.5, 8])
     .on("zoom", zoomed));
 
   function zoomed({ transform }) {
