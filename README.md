@@ -21,3 +21,10 @@ export APP_SETTINGS="config.DevelopmentConfig"
 
 ## Data
 The provided data are two articles from public articles on vaccination. They are part of the [vaccination corpus](https://vaccinationcorpus.wordpress.com/).
+
+
+## Screenshots
+Screenshots from the visualizer!
+
+![Text overview](images/text_overview.png)
+![RDF graph overview](images/rdf_overview.png)
